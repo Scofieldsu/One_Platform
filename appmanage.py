@@ -1,10 +1,10 @@
 # encoding: utf-8
 
 from flask import Flask
-from flaskapi.api.exchange_rate import api
 from flask_cors import *
-
 import config
+from exchange_rate import api
+
 
 def create_app():
     app = Flask(__name__)

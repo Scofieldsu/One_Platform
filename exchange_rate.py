@@ -1,7 +1,9 @@
 # encoding: utf-8
 
+import urllib, urllib2, sys, json
 from flaskapi.api import api_add,api
-import urllib, urllib2, sys
+from config import RATE_HOST,RATE_PATH,RATE_QUERY,AppCODE
+
 
 examp_result = {"showapi_res_code":0,
                 "showapi_res_error":"",
@@ -24,18 +26,11 @@ examp_result = {"showapi_res_code":0,
 
 @api_add
 def get_rate(bank):
-    # host = 'http://ali-waihui.showapi.com'
-    # path = '/bank10'
-    # method = 'GET'
-    # appcode = '6f5adccc90ff4bd1a249a753dd27d2ea'
-    # querys = 'bankCode='
-    # bodys = {}
-    # url = host + path + '?' + querys+bank
-    #
+    # url = RATE_HOST + RATE_PATH + '?' + RATE_QUERY+bank
     # request = urllib2.Request(url)
-    # request.add_header('Authorization', 'APPCODE ' + appcode)
+    # request.add_header('Authorization', 'APPCODE ' + AppCODE)
     # response = urllib2.urlopen(request)
-    # content = response.read()
+    # content = json.loads(response.read())
     # if (content):
     #     print(content)
-    return  examp_result
+    return examp_result

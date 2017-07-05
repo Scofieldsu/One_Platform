@@ -2,8 +2,9 @@
 
 from flask import Flask
 from flask_cors import *
+from flaskapi.api import api
+from exchange_rate import *
 import config
-from exchange_rate import api
 
 
 def create_app():

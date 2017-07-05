@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 import urllib, urllib2, sys, json
-from flaskapi.api import api_add,api
+from flaskapi.api import api_add
 from config import RATE_HOST,RATE_PATH,RATE_QUERY,AppCODE
 
 

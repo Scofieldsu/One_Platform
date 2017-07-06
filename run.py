@@ -6,11 +6,11 @@ from werkzeug.contrib.fixers import ProxyFix
 app = create_app()
 app.wsgi_app = ProxyFix(app.wsgi_app)
 
-@app.route('/api_test/')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0',port=5050)

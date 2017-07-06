@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 ENV APP_ROOT /code
 WORKDIR ${APP_ROOT}
-EXPOSE 5000
+EXPOSE 5050
 COPY . ${APP_ROOT}/
 RUN pip install --no-cache-dir --trusted-host mirrors.aliyun.com -i http://mirrors.aliyun.com/pypi/simple/ -r requirements.txt
 CMD ["gunicorn","-c","gun.conf", "run:app"]

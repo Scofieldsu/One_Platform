@@ -25,12 +25,22 @@ examp_result = {"showapi_res_code":0,
 
 
 @api_add
-def get_rate(bank):
-    # url = RATE_HOST + RATE_PATH + '?' + RATE_QUERY+bank
-    # request = urllib2.Request(url)
-    # request.add_header('Authorization', 'APPCODE ' + AppCODE)
-    # response = urllib2.urlopen(request)
-    # content = json.loads(response.read())
-    # if (content):
-    #     print(content)
+def get_exchange_data(*args, **kwargs):
+    bank = kwargs['bank']
+    origin = kwargs['origin']
+    trans = kwargs['trans']
+    num = kwargs['num']
+    tem_result = get_rate(bank)
     return examp_result
+
+
+def get_rate(bank):
+    url = RATE_HOST + RATE_PATH + '?' + RATE_QUERY+bank
+    request = urllib2.Request(url)
+    request.add_header('Authorization', 'APPCODE ' + AppCODE)
+    response = urllib2.urlopen(request)
+    content = json.loads(response.read())
+    if (content):
+        return content
+    else:
+        return None

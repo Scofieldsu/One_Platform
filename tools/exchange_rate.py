@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-import urllib, urllib2, sys, json
+import urllib2, json
 from flaskapi.api import api_add
 from config import RATE_HOST,RATE_PATH,RATE_QUERY,AppCODE
 
@@ -26,11 +26,11 @@ examp_result = {"showapi_res_code":0,
 
 @api_add
 def get_exchange_data(*args, **kwargs):
-    bank = kwargs['bank']
-    origin = kwargs['origin']
-    trans = kwargs['trans']
-    num = kwargs['num']
-    tem_result = get_rate(bank)
+    # bank = kwargs['bank']
+    # origin = kwargs['origin']
+    # trans = kwargs['trans']
+    # num = kwargs['num']
+    # tem_result = get_rate(bank)
     return examp_result
 
 

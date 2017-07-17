@@ -2,7 +2,8 @@ Flask==0.12
 requests==2.13.0
 Werkzeug==0.11.15
 json-rpc==1.10.3
-Flask-Cors==3.0.2
 pytest==3.1.2
-mock==2.0.0
 gunicorn
+Flask-SQLAlchemy==2.2
+PyMySQL==0.7.11
+Flask-Migrate==2.0.3

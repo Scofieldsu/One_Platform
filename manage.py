@@ -32,7 +32,6 @@ def init_db():
 
 @migrate.configure
 def configure_alembic(config):
-    # modify config object
     return config
 
 if __name__ == '__main__':

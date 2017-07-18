@@ -19,6 +19,14 @@
 
 ---
 
- - 使用Vue.js开发前端页面可以选择参数，传参给服务后端，然后请求阿里云市场的api查询数据，经过转换后返回给前端。
+## 数据库迁移升级：
 
- - 小工具箱，方便扩展。
+ - 使用flask-migrate和flask-script实现。
+
+ - 修改数据库模型时，可以运行以下语句升级数据库：
+   ```python
+   python manage.py  db  migrate
+   python manage.py  db  upgrade
+   ```
+
+ - 使用 python  manage.py  init_db 则会清空所有数据重新建表。

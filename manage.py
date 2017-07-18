@@ -5,22 +5,35 @@
 
 """
 
-from flask import Flask
-from flask_script import Manager
-from flask_migrate import Migrate, MigrateCommand
-import config
-from ext import db
-from models import *
 import click
+from flask_migrate import Migrate,MigrateCommand
+from flask_script import Manager, Shell
+from run import app
+from models import db,User
 
-app = Flask(__name__)
-app.config.from_object(config)
-
+manager = Manager(app)
 migrate = Migrate(app, db)
 
-@app.cli.command()
-def initdb():
+def make_shell_context():
+    return dict(app=app, db=db, User=User)
+
+manager.add_command('shell', Shell(make_context=make_shell_context))
+manager.add_command('db', MigrateCommand)
+
+from models import *
+
+
+@manager.command
+def init_db():
     db.session.commit()
     db.drop_all()
     db.create_all()
-    click.echo('Init Finished!')
+    click.echo('Init db Finished!')
+
+@migrate.configure
+def configure_alembic(config):
+    # modify config object
+    return config
+
+if __name__ == '__main__':
+    manager.run()

@@ -3,8 +3,10 @@ from flask import render_template
 from appmanage import create_app
 from werkzeug.contrib.fixers import ProxyFix
 
+
 app = create_app()
 app.wsgi_app = ProxyFix(app.wsgi_app)
+
 
 @app.after_request
 def after_request(response):
@@ -13,10 +15,10 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE')
     return response
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 
 if __name__ == '__main__':

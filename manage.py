@@ -9,7 +9,7 @@ import click
 from flask_migrate import Migrate,MigrateCommand
 from flask_script import Manager, Shell
 from run import app
-from models import db,User
+from models import db
 
 manager = Manager(app)
 migrate = Migrate(app, db)

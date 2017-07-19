@@ -4,15 +4,19 @@
 @Author : Yu Yuan
 
 """
-from models import db,JsonAble
+from models import db
 
 
-class User(db.Model, JsonAble):
+class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    username = db.Column(db.String(512))
-    password_hash = db.Column(db.String(512))
+    username = db.Column(db.String(50))
+    email = db.Column(db.String(50),unique=True)
+    password_hash = db.Column(db.String(120))
+    services = db.relationship('Service', backref='users')
 
-    def __init__(self,username):
+    def __init__(self,username,email,password_hash):
         self.username = username
+        self.email = email
+        self.password_hash = password_hash
 

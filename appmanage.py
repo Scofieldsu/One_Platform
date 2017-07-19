@@ -4,7 +4,7 @@ from flask import Flask
 from flaskapi.api import api
 import config
 import tools.exchange_rate
-
+import apis.login_signup
 
 def create_app():
     app = Flask(__name__)

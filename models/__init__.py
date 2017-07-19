@@ -8,7 +8,9 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
 from sqlalchemy.orm.state import InstanceState
 
+
 db = SQLAlchemy()
+
 
 
 # Model 序列化代码（转自flask-jsontools）
@@ -60,3 +62,6 @@ class JsonAble(object):
     def __json__(self, exluded_keys=set()):
         return {name: getattr(self, name)
                 for name in get_entity_loaded_propnames(self) - exluded_keys}
+
+from .Service import Service
+from .User import User

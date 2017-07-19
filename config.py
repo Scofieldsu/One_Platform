@@ -30,6 +30,9 @@ def db_uri():
 SQLALCHEMY_DATABASE_URI = db_uri()
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+# secret_key
+SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f'
+
 
 
 

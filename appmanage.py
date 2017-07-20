@@ -3,6 +3,7 @@
 from flask import Flask
 from flaskapi.api import api
 import config
+from flaskapi.common import get_all_api
 import tools.exchange_rate
 import apis.login_signup
 

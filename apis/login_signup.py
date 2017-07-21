@@ -32,8 +32,7 @@ def sign_up(username,email,password):
         result["msg"] = "The email has been registered"
     else :
         sign_up_user = User(username, email, password)
-        db.session.add(sign_up_user)
-        db.session.commit()
+        sign_up_user.save()
         result["msg"] = "success"
     return result
 

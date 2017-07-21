@@ -20,3 +20,7 @@ class User(db.Model):
         self.email = email
         self.password_hash = password_hash
 
+    def save(self):
+        db.session.add(self)
+        db.session.commit()
+

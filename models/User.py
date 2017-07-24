@@ -14,6 +14,8 @@ class User(db.Model):
     email = db.Column(db.String(50),unique=True)
     password_hash = db.Column(db.String(120))
     services = db.relationship('Service', backref='users')
+    messages = db.relationship('Message', backref='users')
+
 
     def __init__(self,username,email,password_hash):
         self.username = username

@@ -6,3 +6,4 @@
 """
 from . import service_info
 from . import login_signup
+from . import leave_message

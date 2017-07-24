@@ -65,3 +65,4 @@ class JsonAble(object):
 
 from .Service import Service
 from .User import User
+from .Message import Message

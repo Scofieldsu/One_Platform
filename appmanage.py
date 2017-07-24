@@ -7,6 +7,7 @@ from flaskapi.common import get_all_api
 import tools.exchange_rate
 import apis
 
+
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(api.as_blueprint(url='/api'))

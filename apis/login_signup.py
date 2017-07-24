@@ -7,7 +7,6 @@
 import hashlib
 from flaskapi.api import api_add
 from models.User import User
-from models import db
 
 
 # md5密码
@@ -79,7 +78,25 @@ def change_pwd(user_id,old_pwd,new_pwd):
         result["msg"] = "The old password is wrong!"
     else:
         change_pwd_user.password_hash = new_pwd
-        db.session.add(change_pwd_user)
-        db.session.commit()
+        change_pwd_user.save()
         result["msg"] = "success"
+    return result
+
+
+@api_add
+def get_user_list(user_id):
+    """
+    :description 获取用户列表
+    :param user_id: int:用户ID
+    :return: list
+    """
+    result = list()
+    user_list = User.query.all()
+    if user_list:
+        for user in user_list:
+            result_item = dict()
+            result_item["id"] = user.id
+            result_item["username"] = user.username
+            result_item["email"] = user.email
+            result.append(result_item)
     return result

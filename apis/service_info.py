@@ -5,8 +5,6 @@
 
 """
 from flaskapi.api import api_add
-from models import db
-from models.User import User
 from models.Service import Service
 
 
@@ -39,11 +37,17 @@ def add_service(user_id,service_name,link,tag,shortcut,desc,notice):
 
 @api_add
 def get_service_list(user_id):
+    """
+    :description 获取所有服务
+    :param user_id: int:用户ID
+    :return: list
+    """
     result = list()
     service_list = Service.query.all()
     if service_list:
         for service in service_list:
             result_item = dict()
+            result_item["id"] = service.id
             result_item["name"] = service.service_name
             result_item["link"] = service.link
             result_item["shortcut"] = service.shortcut or ""
@@ -54,3 +58,25 @@ def get_service_list(user_id):
             result.append(result_item)
     return result
 
+
+@api_add
+def get_service(user_id,service_id):
+    """
+    :description 获取某一个服务信息
+    :param user_id: int:用户ID
+    :param service_id: int :服务ID
+    :return:dict
+    """
+    result = dict()
+    service = Service.query.filter_by(id=service_id).first()
+    if service:
+        result["name"] = service.service_name
+        result["link"] = service.link
+        result["shortcut"] = service.shortcut or ""
+        result["tag"] = service.tag or ""
+        result["notice"] = service.notice
+        result["desc"] = service.description or ""
+        result["msg"] = "success"
+    else:
+        result["msg"] = "failed to find service"
+    return result

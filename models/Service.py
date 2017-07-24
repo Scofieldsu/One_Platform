@@ -17,7 +17,7 @@ class Service(db.Model):
     link = db.Column(db.String(100), unique=True)
     tag = db.Column(db.String(50))
     description = db.Column(db.String(200))
-    publish_time = db.Column(db.DateTime,default=datetime.utcnow)
+    publish_time = db.Column(db.DateTime,default=datetime.now)
     change_time = db.Column(db.DateTime)
     publish_user = db.Column(db.Integer, db.ForeignKey('user.id'))
 

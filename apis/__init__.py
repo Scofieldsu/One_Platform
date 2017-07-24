@@ -5,5 +5,5 @@
 
 """
 from . import service_info
-from . import login_signup
+from . import user_info
 from . import leave_message

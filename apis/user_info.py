@@ -27,7 +27,9 @@ def sign_up(username,email,password):
     """
     result = dict()
     query_user = User.query.filter_by(email=email).first()
-    if query_user:
+    if query_user and not query_user.active:
+        result["msg"] = "The email has been registered but not active"
+    elif query_user and  query_user.active:
         result["msg"] = "The email has been registered"
     else :
         sign_up_user = User(username, email, password)
@@ -46,7 +48,7 @@ def sign_in(email,password):
     """
     sign_in_user = User.query.filter_by(email=email).first()
     result = dict()
-    if sign_in_user:
+    if sign_in_user and sign_in_user.active:
         pwd = sign_in_user.password_hash
         if pwd == password or pwd == hash_pwd(password):
             user_id = sign_in_user.id
@@ -56,6 +58,8 @@ def sign_in(email,password):
             result["msg"] = "success"
         else:
             result["msg"] = "password error"
+    elif sign_in_user and not sign_in_user.active:
+        result["msg"] = "user is not active"
     else:
         result["msg"] = "email error"
     return result
@@ -98,5 +102,9 @@ def get_user_list(user_id):
             result_item["id"] = user.id
             result_item["username"] = user.username
             result_item["email"] = user.email
+            if user.active:
+                result_item["active"] = 1
+            else:
+                result_item["active"] = 0
             result.append(result_item)
     return result

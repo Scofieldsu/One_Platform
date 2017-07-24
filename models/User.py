@@ -15,6 +15,7 @@ class User(db.Model):
     password_hash = db.Column(db.String(120))
     services = db.relationship('Service', backref='users')
     messages = db.relationship('Message', backref='users')
+    active = db.Column(db.Boolean, default=1)
 
 
     def __init__(self,username,email,password_hash):
@@ -26,3 +27,14 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
+
+    def enable(self):
+        self.active = 1
+        db.session.add(self)
+        db.session.commit()
+
+
+    def disable(self):
+        self.active = 0
+        db.session.add(self)
+        db.session.commit()

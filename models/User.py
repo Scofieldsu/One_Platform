@@ -6,6 +6,10 @@
 """
 from models import db
 
+collections = db.Table('collection',
+    db.Column('user_id',db.Integer, db.ForeignKey('user.id')),
+    db.Column('service_id',db.Integer, db.ForeignKey('service.id'))
+)
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -13,9 +17,12 @@ class User(db.Model):
     username = db.Column(db.String(50))
     email = db.Column(db.String(50),unique=True)
     password_hash = db.Column(db.String(120))
+    active = db.Column(db.Boolean, default=1)
     services = db.relationship('Service', backref='users')
     messages = db.relationship('Message', backref='users')
-    active = db.Column(db.Boolean, default=1)
+    collect = db.relationship('Service', secondary = collections,
+                              backref = db.backref('star_users',lazy='dynamic'),
+                              lazy = 'dynamic')
 
     def __init__(self,username,email,password_hash):
         self.username = username

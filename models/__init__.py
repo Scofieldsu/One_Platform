@@ -64,5 +64,5 @@ class JsonAble(object):
                 for name in get_entity_loaded_propnames(self) - exluded_keys}
 
 from .Service import Service
-from .User import User
+from .User import *
 from .Message import Message

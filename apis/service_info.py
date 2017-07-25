@@ -4,7 +4,7 @@
 @Author : Yu Yuan
 
 """
-from flaskapi.api import api_add,api_class
+from flaskapi.api import api_class
 from models.Service import Service
 
 

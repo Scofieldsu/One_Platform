@@ -17,7 +17,6 @@ class User(db.Model):
     messages = db.relationship('Message', backref='users')
     active = db.Column(db.Boolean, default=1)
 
-
     def __init__(self,username,email,password_hash):
         self.username = username
         self.email = email
@@ -27,6 +26,9 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    def delete(self):
+        db.session.delete(self)
+        db.session.commit()
 
     def enable(self):
         self.active = 1

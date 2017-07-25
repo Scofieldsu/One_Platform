@@ -108,7 +108,7 @@ class UserApi(object):
     def set_user_enable(self,user_id, op_user_id):
         """
         :description 设置用户有效
-        :param use_id: int:用户ID
+        :param user_id: int:用户ID
         :param op_user_id:int:被设置的用户ID
         :return:msg
         """
@@ -127,7 +127,7 @@ class UserApi(object):
     def set_user_disable(self,user_id, op_user_id):
         """
         :description 设置用户无效
-        :param use_id: int:用户ID
+        :param user_id: int:用户ID
         :param op_user_id:int:被设置的用户ID
         :return:msg
         """

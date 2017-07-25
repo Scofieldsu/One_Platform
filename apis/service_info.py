@@ -78,3 +78,19 @@ class ServiceApi(object):
         else:
             result["msg"] = "failed to find service"
         return result
+
+    def delete_service(self,user_id,service_link):
+        """
+        :description 删除服务
+        :param user_id: int:用户ID
+        :param service_link: str:服务链接
+        :return: msg
+        """
+        result = dict()
+        service = Service.query.filter_by(link=service_link).first()
+        if service:
+            service.delete()
+            result["msg"] = "success"
+        else:
+            result["msg"] = "service link error"
+        return result

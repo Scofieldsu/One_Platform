@@ -16,6 +16,12 @@
 
  > docker run -d -p 8000:5050 smart_tools
 
+- 在根目录下有docker-compose配置文件，可以根据命令启动或者停止容器运行：
+
+> docker-compose up -d --build       (启动)
+
+> docker-compose down               （停止）
+
 
 ---
 
@@ -30,3 +36,10 @@
    ```
 
  - 使用 python  manage.py  init_db 则会清空所有数据重新建表。
+
+
+ ---
+
+ ## 效果图
+
+ ![部分功能展示](snips/test.gif)

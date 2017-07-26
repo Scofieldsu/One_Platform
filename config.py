@@ -1,7 +1,7 @@
 # encoding: utf-8
 import os
 
-# DEBUG = os.getenv('DEBUG', 'false').lower() == "true"
+DEBUG = os.getenv('DEBUG', 'false').lower() == "true"
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 
@@ -14,13 +14,13 @@ RATE_PATH = '/bank10'
 RATE_QUERY = 'bankCode='
 
 # MYSQL
-MYSQL_HOST = os.getenv('MYSQL_HOST', '192.168.1.230')
+MYSQL_HOST = os.getenv('MYSQL_HOST', 'localhost')
 MYSQL_PORT = int(os.getenv('MYSQL_PORT', '3306'))
 MYSQL_USERNAME = os.getenv('MYSQL_USERNAME', 'root')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'yuyuan')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE', 'tools')
 
-DEBUG = True
+DEBUG = False
 
 if DEBUG:
     MYSQL_HOST = "localhost"

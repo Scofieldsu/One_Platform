@@ -20,6 +20,7 @@ class Service(db.Model):
     publish_time = db.Column(db.DateTime,default=datetime.now)
     change_time = db.Column(db.DateTime)
     publish_user = db.Column(db.Integer, db.ForeignKey('user.id'))
+    update_user = db.Column(db.Integer)
 
     def __init__(self,user_id,service_name,link,shortcut,notice,tag,desc):
         self.publish_user = user_id

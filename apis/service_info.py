@@ -6,6 +6,8 @@
 """
 from flaskapi.api import api_class
 from models.Service import Service
+from models.User import User
+from datetime import datetime
 
 
 @api_class
@@ -54,6 +56,10 @@ class ServiceApi(object):
                 result_item["tag"] = service.tag or ""
                 result_item["publish_time"] = service.publish_time or ""
                 result_item["publish_user"] = service.users.username or ""
+                try:
+                    result_item["update_user"] = User.query.filter_by(id=service.update_user).first().username
+                except:
+                    result_item["update_user"] = ""
                 result_item["change_time"] = service.change_time or ""
                 result.append(result_item)
         return result
@@ -68,6 +74,7 @@ class ServiceApi(object):
         result = dict()
         service = Service.query.filter_by(id=service_id).first()
         if service:
+            result["id"] = service_id
             result["name"] = service.service_name
             result["link"] = service.link
             result["shortcut"] = service.shortcut or ""
@@ -79,18 +86,52 @@ class ServiceApi(object):
             result["msg"] = "failed to find service"
         return result
 
-    def delete_service(self,user_id,service_link):
+    def delete_service(self,user_id,service_id):
         """
         :description 删除服务
         :param user_id: int:用户ID
-        :param service_link: str:服务链接
+        :param service_id: int:服务ID
         :return: msg
         """
         result = dict()
-        service = Service.query.filter_by(link=service_link).first()
+        service = Service.query.filter_by(id=service_id).first()
         if service:
             service.delete()
             result["msg"] = "success"
         else:
             result["msg"] = "service link error"
         return result
+
+    def update_service(self,user_id,service_id,service_name,link,tag,shortcut,desc,notice):
+        """
+        :description 更新服务信息
+        :param user_id: int:用户ID
+        :param service_id: int:服务ID
+        :param service_name: str:服务名称
+        :param link: str:服务链接
+        :param tag: str:服务标签
+        :param shortcut:str: 服务短称
+        :param desc: str:服务简介
+        :param notice: int:服务通知
+        :return: msg
+        """
+        result = dict()
+        service = Service.query.filter_by(id=service_id).first()
+        if service:
+            try:
+                service.service_name = service_name
+                service.link = link
+                service.tag = tag
+                service.shortcut = shortcut
+                service.description = desc
+                service.notice = notice
+                service.update_user = user_id
+                service.change_time = datetime.now()
+                service.save()
+                result["msg"] = "success"
+            except:
+                result["msg"] = "update service data failed"
+        else:
+            result["msg"] = "service id error"
+        return result
+

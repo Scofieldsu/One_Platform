@@ -20,14 +20,6 @@ MYSQL_USERNAME = os.getenv('MYSQL_USERNAME', 'root')
 MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD', 'yuyuan')
 MYSQL_DATABASE = os.getenv('MYSQL_DATABASE', 'tools')
 
-DEBUG = False
-
-if DEBUG:
-    MYSQL_HOST = "localhost"
-    MYSQL_PORT = 3306
-    MYSQL_USERNAME = "root"
-    MYSQL_PASSWORD = "yuyuan"
-    MYSQL_DATABASE = "tools"
 
 
 def db_uri():

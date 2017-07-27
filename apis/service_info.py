@@ -56,6 +56,7 @@ class ServiceApi(object):
                 result_item["tag"] = service.tag or ""
                 result_item["publish_time"] = service.publish_time or ""
                 result_item["publish_user"] = service.users.username or ""
+                result_item["count"] = service.visit_count or 0
                 try:
                     result_item["update_user"] = User.query.filter_by(id=service.update_user).first().username
                 except:
@@ -81,6 +82,7 @@ class ServiceApi(object):
             result["tag"] = service.tag or ""
             result["notice"] = service.notice
             result["desc"] = service.description or ""
+            result["count"] = service.visit_count or 0
             result["msg"] = "success"
         else:
             result["msg"] = "failed to find service"
@@ -99,7 +101,23 @@ class ServiceApi(object):
             service.delete()
             result["msg"] = "success"
         else:
-            result["msg"] = "service link error"
+            result["msg"] = "service id error"
+        return result
+
+    def visit_service(self,user_id,service_id):
+        """
+        :description 访问服务
+        :param user_id: int:用户ID
+        :param service_id: int:服务ID
+        :return: msg
+        """
+        result = dict()
+        service = Service.query.filter_by(id=service_id).first()
+        if service:
+            service.visit()
+            result["msg"] = "success"
+        else:
+            result["msg"] = "service id error"
         return result
 
     def update_service(self,user_id,service_id,service_name,link,tag,shortcut,desc,notice):

@@ -21,6 +21,7 @@ class Service(db.Model):
     change_time = db.Column(db.DateTime)
     publish_user = db.Column(db.Integer, db.ForeignKey('user.id'))
     update_user = db.Column(db.Integer)
+    visit_count = db.Column(db.Integer,default=0)
 
     def __init__(self,user_id,service_name,link,shortcut,notice,tag,desc):
         self.publish_user = user_id
@@ -37,4 +38,9 @@ class Service(db.Model):
 
     def delete(self):
         db.session.delete(self)
+        db.session.commit()
+
+    def visit(self):
+        self.visit_count += 1
+        db.session.add(self)
         db.session.commit()

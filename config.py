@@ -34,6 +34,16 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # secret_key
 SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f'
 
+# gitlab
+BASE_SERVICE = 'http://192.168.1.230:5050'
+BASE_GITLAB = 'http://10.42.135.82'
+CLIENT_ID = '2e78f1c6c3311767da17fd17fb86bdc4d70426a48e40d81da5dcf57b5fb865c0'
+CLIENT_SECRET = '504f5f43ea2e8e30ec2387b9c42155250f2cbe72cbae21a33ad5eb84299c959d'
+GRANT_TYPE = 'authorization_code'
+CALLBACK = '/login/gitlab'
+REDIRECT_URI = BASE_SERVICE+CALLBACK
+POST_TOKEN_URL = BASE_GITLAB + '/oauth/token'
+GITLAB_API_URL = BASE_GITLAB + '/api/v4/'
 
 
 

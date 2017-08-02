@@ -43,3 +43,6 @@
  ## 效果图
 
  ![部分功能展示](snips/test.gif)
+
+ ## 使用gitlab登录
+ ![gitlab验证登录](snips/gitlab.gif)

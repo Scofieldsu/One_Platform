@@ -29,12 +29,12 @@ def login_gitlab():
         'redirect_uri': config.REDIRECT_URI
     }
     r = requests.post(config.POST_TOKEN_URL,playload)
-    x = json.loads(r.text)
+    x = json.loads(r.content)
     token = {
         'access_token': x['access_token']
     }
     y = requests.get(config.GITLAB_API_URL+'user',token)
-    user = json.loads(y.text)
+    user = json.loads(y.content)
     from models.User import User
     query_user = User.query.filter_by(email=user['email']).first()
     if query_user :

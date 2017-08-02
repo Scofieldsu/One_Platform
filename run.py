@@ -1,7 +1,7 @@
 # encoding: utf-8
 import requests,json
 import config
-from flask import render_template,request,redirect
+from flask import render_template,request
 from appmanage import create_app
 from werkzeug.contrib.fixers import ProxyFix
 
@@ -34,7 +34,19 @@ def login_gitlab():
         'access_token': x['access_token']
     }
     y = requests.get(config.GITLAB_API_URL+'user',token)
-    return y.text
+    user = json.loads(y.text)
+    from models.User import User
+    query_user = User.query.filter_by(email=user['email']).first()
+    if query_user :
+        user['id'] = query_user.id
+    else:
+        sign_up_user = User(user['name'], user['email'], '123456')
+        sign_up_user.save()
+        user['id'] = User.query.filter_by(email=user['email']).first().id
+    return render_template('transfer.html', user = user,login_url = config.LOGIN_URL)
+
+
+
 
 @app.route('/')
 def index():

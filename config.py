@@ -44,6 +44,7 @@ CALLBACK = '/login/gitlab'
 REDIRECT_URI = BASE_SERVICE+CALLBACK
 POST_TOKEN_URL = BASE_GITLAB + '/oauth/token'
 GITLAB_API_URL = BASE_GITLAB + '/api/v4/'
+LOGIN_URL = BASE_SERVICE + '/#/yours/notices'
 
 
 

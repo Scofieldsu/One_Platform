@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>确认登录</title>
+    <script type="text/javascript">
+        function set_info () {
+         window.localStorage.setItem('email', document.getElementById("email").value)
+         window.localStorage.setItem('user_id', document.getElementById("id").value)
+         window.localStorage.setItem('user_name', document.getElementById("name").value)
+         window.sessionStorage['login'] = true
+         window.location.href = document.getElementById("login_url").value
+        }
+    </script>
+
+</head>
+<body onload="set_info()">
+<input type="hidden" name="name" id="login_url" value= {{ login_url }}>
+<input type="hidden" name="name" id="name" value= {{ user.name }}>
+<input type="hidden" name="name" id="email" value= {{ user.email }}>
+<input type="hidden" name="name" id="id" value= {{ user.id }}>
+</body>
+</html>

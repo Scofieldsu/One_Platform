@@ -40,7 +40,7 @@ def login_gitlab():
     if query_user :
         user['id'] = query_user.id
     else:
-        sign_up_user = User(user['name'], user['email'], '123456')
+        sign_up_user = User(user['name'], user['email'], config.PWD)
         sign_up_user.save()
         user['id'] = User.query.filter_by(email=user['email']).first().id
     return render_template('transfer.html', user = user,login_url = config.LOGIN_URL)

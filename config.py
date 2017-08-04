@@ -34,17 +34,29 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 # secret_key
 SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f'
 
-# gitlab
+# gitlab oauth认证信息
+
+## 回调服务
 BASE_SERVICE = 'http://192.168.1.230:5050'
-BASE_GITLAB = 'http://10.46.59.55'
-CLIENT_ID = '7a399849bf58eb8f983728b6fdd543c453e7c792d0d10b2b87ba88a7da6da3d1'
-CLIENT_SECRET = 'd4f5dcb964c9d2fc9219fe98347502d9798268e70fd7b4209a3c18b4e8d8c49a'
+## gitlab地址
+BASE_GITLAB = 'http://192.168.5.10'
+## application ID
+CLIENT_ID = 'a164506151fbd065a97d3cd9654ee0e37f80ffe81616a8311c320022a097e2c3'
+## application SECRET
+CLIENT_SECRET = '702b9408eca977655b7b7f1404143fc98efc7e28ebf70834467e3cf8b1ef55e6'
+## 授权模式 （授权码模式：authorization_code；简化模式：implicit；密码模式：password；客户端模式：client_credentials）
 GRANT_TYPE = 'authorization_code'
+## 回调
 CALLBACK = '/login/gitlab'
+## 回调链接
 REDIRECT_URI = BASE_SERVICE+CALLBACK
+## 请求access_token
 POST_TOKEN_URL = BASE_GITLAB + '/oauth/token'
+## 请求gitlab api
 GITLAB_API_URL = BASE_GITLAB + '/api/v4/'
+## 登录后路径
 LOGIN_URL = BASE_SERVICE + '/#/yours/notices'
+## 默认注册密码
 PWD = 'e10adc3949ba59abbe56e057f20f883e'
 
 

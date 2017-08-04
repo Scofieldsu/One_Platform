@@ -46,8 +46,6 @@ def login_gitlab():
     return render_template('transfer.html', user = user,login_url = config.LOGIN_URL)
 
 
-
-
 @app.route('/')
 def index():
     return render_template('index.html')

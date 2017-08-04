@@ -1,7 +1,7 @@
 GitLab as an OAuth2 provider
 ----------------------------
 
-- 在gitlab个人资料设置-应用，增加新的应用，即可生成application ID 和secret。
+- **在gitlab个人资料设置-应用，增加新的应用，即可生成application ID 和secret**
 
  ![新增应用](snips/gitlab_oauth/0_1.png)
 
@@ -9,19 +9,19 @@ GitLab as an OAuth2 provider
 
 ## 授权码模式获取access_token
 
-- GET请求: gitlab地址/oauth/authorize ,参数如下图：
+- **GET请求: gitlab地址/oauth/authorize ,参数如下图：**
 
 ![get请求参数](snips/gitlab_oauth/1.png)
 
-- 登录gitlab后，需要确认认证
+- **登录gitlab后，需要确认认证**
 
 ![确认认证](snips/gitlab_oauth/2.png)
 
-- 确认认证后，gitlab会生成code作为参数，回调到redirect_uri
+- **确认认证后，gitlab会生成code作为参数，回调到redirect_uri**
 
 ![回调](snips/gitlab_oauth/3.png)
 
-- 根据code再去请求获取acces_token
+- **根据code再去请求获取acces_token**
 
 ![获取access_token](snips/gitlab_oauth/4.png)
 
@@ -35,7 +35,7 @@ GitLab as an OAuth2 provider
 
 ## 得到access_token后请求gitlab api获取相关信息
 
-- 例：获取当前用户信息
+- **例：获取当前用户信息**
 
 ![获取当前用户信息](snips/gitlab_oauth/5.png)
 

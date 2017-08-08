@@ -37,7 +37,7 @@ SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f
 # gitlab oauth认证信息
 
 ## 回调服务
-BASE_SERVICE = 'http://192.168.1.230:5050'
+BASE_SERVICE = 'http://192.168.1.230'
 ## gitlab地址
 BASE_GITLAB = 'https://gitlab.dianchu.cc/'
 ## application ID

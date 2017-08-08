@@ -39,7 +39,7 @@ SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f
 ## 回调服务
 BASE_SERVICE = 'http://192.168.1.230:5050'
 ## gitlab地址
-BASE_GITLAB = 'http://192.168.5.10'
+BASE_GITLAB = 'https://gitlab.dianchu.cc/'
 ## application ID
 CLIENT_ID = 'a164506151fbd065a97d3cd9654ee0e37f80ffe81616a8311c320022a097e2c3'
 ## application SECRET

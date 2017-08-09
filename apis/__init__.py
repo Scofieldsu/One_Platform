@@ -8,3 +8,4 @@ from . import service_info
 from . import user_info
 from . import leave_message
 from . import collections
+from . import setting_info

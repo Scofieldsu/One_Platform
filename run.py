@@ -20,20 +20,22 @@ def after_request(response):
 
 @app.route(config.CALLBACK,methods = {'POST','GET'})
 def login_gitlab():
+    from models.Setting import Setting
+    setting = Setting.query.filter_by(application_name=config.APPLICATION).first()
     code = request.args.get('code')
     playload = {
-        'client_id': config.CLIENT_ID,
-        'client_secret': config.CLIENT_SECRET,
+        'client_id': setting.client_id,
+        'client_secret': setting.client_secret,
         'code': code,
         'grant_type': config.GRANT_TYPE,
-        'redirect_uri': config.REDIRECT_URI
+        'redirect_uri': setting.redirect_uri
     }
-    r = requests.post(config.POST_TOKEN_URL,playload)
+    r = requests.post(setting.gitlab_url+config.POST_TOKEN_URL,playload)
     x = json.loads(r.content)
     token = {
         'access_token': x['access_token']
     }
-    y = requests.get(config.GITLAB_API_URL+'user',token)
+    y = requests.get(setting.gitlab_url+config.GITLAB_API_URL+'user',token)
     user = json.loads(y.content)
     from models.User import User
     query_user = User.query.filter_by(email=user['email']).first()
@@ -43,7 +45,7 @@ def login_gitlab():
         sign_up_user = User(user['name'], user['email'], config.PWD)
         sign_up_user.save()
         user['id'] = User.query.filter_by(email=user['email']).first().id
-    return render_template('transfer.html', user = user,login_url = config.LOGIN_URL)
+    return render_template('transfer.html', user = user,login_url = setting.redirect_server+config.LOGIN_URL)
 
 
 @app.route('/')

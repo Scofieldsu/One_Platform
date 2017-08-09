@@ -36,26 +36,18 @@ SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f
 
 # gitlab oauth认证信息
 
-## 回调服务
-BASE_SERVICE = 'http://192.168.1.230'
-## gitlab地址
-BASE_GITLAB = 'https://gitlab.dianchu.cc/'
-## application ID
-CLIENT_ID = 'a164506151fbd065a97d3cd9654ee0e37f80ffe81616a8311c320022a097e2c3'
-## application SECRET
-CLIENT_SECRET = '702b9408eca977655b7b7f1404143fc98efc7e28ebf70834467e3cf8b1ef55e6'
+# 应用名称
+APPLICATION = 'One-Platform'
 ## 授权模式 （授权码模式：authorization_code；简化模式：implicit；密码模式：password；客户端模式：client_credentials）
 GRANT_TYPE = 'authorization_code'
 ## 回调
 CALLBACK = '/login/gitlab'
-## 回调链接
-REDIRECT_URI = BASE_SERVICE+CALLBACK
 ## 请求access_token
-POST_TOKEN_URL = BASE_GITLAB + '/oauth/token'
+POST_TOKEN_URL =  '/oauth/token'
 ## 请求gitlab api
-GITLAB_API_URL = BASE_GITLAB + '/api/v4/'
+GITLAB_API_URL =  '/api/v4/'
 ## 登录后路径
-LOGIN_URL = BASE_SERVICE + '/#/yours/notices'
+LOGIN_URL = '/#/yours/notices'
 ## 默认注册密码
 PWD = 'e10adc3949ba59abbe56e057f20f883e'
 

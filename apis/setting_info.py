@@ -11,6 +11,16 @@ from models.Setting import Setting
 class SettingApi(object):
 
     def set_info(self,application_name, gitlab_url, client_id, client_secret, redirect_uri, redirect_server):
+        """
+        :description gitlab配置信息
+        :param application_name: str:应用名称
+        :param gitlab_url: str:gitlab地址
+        :param client_id: str:应用ID
+        :param client_secret: str:应用密钥
+        :param redirect_uri: str:回调链接
+        :param redirect_server: str:回调服务地址
+        :return: msg
+        """
         result = dict()
         old_setting = Setting.query.filter_by(application_name=application_name).first()
         if old_setting:
@@ -28,6 +38,11 @@ class SettingApi(object):
         return result
 
     def get_info(self,application_name):
+        """
+        :description  获取gitlab配置信息
+        :param application_name:str:应用名称
+        :return:msg
+        """
         result = dict()
         setting = Setting.query.filter_by(application_name=application_name).first()
         if setting:

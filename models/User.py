@@ -18,6 +18,7 @@ class User(db.Model):
     email = db.Column(db.String(50),unique=True)
     password_hash = db.Column(db.String(120))
     active = db.Column(db.Boolean, default=1)
+    access_token = db.Column(db.String(120))
     services = db.relationship('Service', backref='users')
     messages = db.relationship('Message', backref='users')
     collect = db.relationship('Service', secondary = collections,

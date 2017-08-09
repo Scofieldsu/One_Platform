@@ -37,7 +37,7 @@ SECRET_KEY = 'Bd\x97<q\xfdD\xc9\x85]\xa4\x92\xa3\x9f\x101e\x95\xf1\xf4;\xeem\x8f
 # gitlab oauth认证信息
 
 # 应用名称
-APPLICATION = 'One-Platform'
+APPLICATION = 'One-Platform-local'
 ## 授权模式 （授权码模式：authorization_code；简化模式：implicit；密码模式：password；客户端模式：client_credentials）
 GRANT_TYPE = 'authorization_code'
 ## 回调

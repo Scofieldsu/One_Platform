@@ -142,3 +142,18 @@ class UserApi(object):
         else:
             result["msg"] = "user id  error!"
         return result
+
+    def get_access_token(self,user_id):
+        """
+        :description 获取用户gitlab的access_token
+        :param user_id: int: 用户ID
+        :return: msg
+        """
+        result = dict()
+        user = User.query.filter_by(id=user_id).first()
+        if user :
+            result["access_token"] = user.access_token or ''
+            result["msg"] = 'success'
+        else:
+            result["msg"] = "cann't find user"
+        return result

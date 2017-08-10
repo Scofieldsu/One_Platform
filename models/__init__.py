@@ -67,3 +67,4 @@ from .Service import Service
 from .User import *
 from .Message import Message
 from .Setting import Setting
+from .Configuration import Configuration

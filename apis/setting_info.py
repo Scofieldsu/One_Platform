@@ -6,6 +6,7 @@
 """
 from flaskapi.api import api_class
 from models.Setting import Setting
+from models.Configuration import Configuration
 
 @api_class
 class SettingApi(object):
@@ -37,13 +38,21 @@ class SettingApi(object):
             result["msg"] = "success"
         return result
 
-    def get_info(self,application_name):
+    def get_info(self):
         """
         :description  获取gitlab配置信息
-        :param application_name:str:应用名称
         :return:msg
         """
         result = dict()
+        configuration = Configuration.query.all()
+        if not configuration:
+            result["msg"] = "cann't find configuration"
+            return result
+        elif len(configuration) == 1:
+            application_name = configuration[0].application_name
+        else:
+            result["msg"] = "configuration error not one"
+            return result
         setting = Setting.query.filter_by(application_name=application_name).first()
         if setting:
             result["application_name"] = setting.application_name or ''
@@ -55,4 +64,22 @@ class SettingApi(object):
             result["msg"] = "success"
         else:
             result["msg"] = "cann't find application"
+        return result
+
+    def get_application_list(self):
+        """
+        :description 获取gitlab应用的列表以及当前应用
+        :return: list
+        """
+        result = list()
+        result.append('')
+        settings = Setting.query.all()
+        configuration = Configuration.query.all()
+        if len(configuration) == 1:
+            result[0] = configuration[0].application_name
+        if settings:
+            for setting in settings:
+                result_item = dict()
+                result_item["label"] = result_item["value"] = setting.application_name
+                result.append(result_item)
         return result

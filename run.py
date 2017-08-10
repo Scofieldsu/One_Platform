@@ -20,8 +20,22 @@ def after_request(response):
 
 @app.route(config.CALLBACK,methods = {'POST','GET'})
 def login_gitlab():
+    result = dict()
+    error = request.args.get('error')
+    if error:
+        return render_template('index.html')
     from models.Setting import Setting
-    setting = Setting.query.filter_by(application_name=config.APPLICATION).first()
+    from models.Configuration import Configuration
+    configuration = Configuration.query.all()
+    if not configuration:
+        result["msg"] = "cann't find configuration"
+        return result
+    elif len(configuration) == 1:
+        application_name = configuration[0].application_name
+    else:
+        result["msg"] = "configuration error not one"
+        return result
+    setting = Setting.query.filter_by(application_name=application_name).first()
     code = request.args.get('code')
     playload = {
         'client_id': setting.client_id,
@@ -48,7 +62,7 @@ def login_gitlab():
         sign_up_user.access_token = x['access_token']
         sign_up_user.save()
         user['id'] = User.query.filter_by(email=user['email']).first().id
-    return render_template('transfer.html', user = user,login_url = setting.redirect_server+config.LOGIN_URL)
+    return render_template('transfer.html', user=user,login_url=setting.redirect_server+config.LOGIN_URL)
 
 
 @app.route('/')

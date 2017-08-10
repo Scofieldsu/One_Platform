@@ -49,16 +49,16 @@
 
 ![新增gitlab应用](snips/gitlab_add_app.png)
 
-- 配置正确的gitlab应用，可以保证你可以正常通过gitlab验证登录。
+- 配置正确的gitlab应用，保证你可以正常通过gitlab验证登录。
 
-  - 点击查询，可以显示系统当前使用的gitlab应用，下拉显示应用列表。
+  - 点击查询，可以显示系统当前使用的gitlab应用，下拉显示所有gitlab应用列表。
 
 ![选择gitlab应用](snips/gitlab_select_app.png)
 
 
  ---
 
- ## 效果图
+ ## 系统效果图
 
  ![部分功能展示](snips/test.gif)
 

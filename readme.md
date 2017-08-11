@@ -1,5 +1,13 @@
 # <center>One-Platform</center>
 
+![pyversions](https://img.shields.io/badge/python%20-2.7-blue.svg)
+![vueversions](https://img.shields.io/badge/Vue.js-2.3.3-4fc08d.svg)
+![es2015](https://img.shields.io/badge/ECMAScript-6-green.svg)
+![element ui](https://img.shields.io/badge/element-1.3.7-20a0ff.svg)
+![gunicorn](https://img.shields.io/badge/gunicorn-19.7.1-brightgreen.svg)
+
+---
+
 - 安装依赖：pip install -r requirements.txt
 
 - 本机调试运行：python run.py

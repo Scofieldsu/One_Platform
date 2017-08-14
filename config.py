@@ -49,7 +49,11 @@ LOGIN_URL = '/#/yours/notices'
 ## 默认注册密码
 PWD = 'e10adc3949ba59abbe56e057f20f883e'
 
-
-
+#　服务动作
+ACTION = {
+    "add": "发布",
+    "update": "更新",
+    "delete": "删除"
+}
 
 

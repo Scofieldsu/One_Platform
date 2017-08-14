@@ -10,3 +10,4 @@ from . import leave_message
 from . import collections
 from . import setting_info
 from . import configurations
+from . import notice_info

@@ -8,6 +8,8 @@ from flaskapi.api import api_class
 from models.Service import Service
 from models.User import User
 from datetime import datetime
+from models.Notice import Notice
+from config import ACTION
 
 
 @api_class
@@ -35,6 +37,11 @@ class ServiceApi(object):
         else:
             service_by_add = Service(user_id, service_name, link, shortcut, notice, tag, desc)
             service_by_add.save()
+            # 更新通知
+            if notice:
+                action = ACTION["add"]
+                add_notice = Notice(user_id,service_name,action)
+                add_notice.save()
             result["msg"] = "success"
         return result
 
@@ -99,6 +106,10 @@ class ServiceApi(object):
         service = Service.query.filter_by(id=service_id).first()
         if service:
             service.delete()
+            # 更新通知
+            action = ACTION["delete"]
+            add_notice = Notice(user_id, service.service_name, action)
+            add_notice.save()
             result["msg"] = "success"
         else:
             result["msg"] = "service id error"
@@ -146,6 +157,10 @@ class ServiceApi(object):
                 service.update_user = user_id
                 service.change_time = datetime.now()
                 service.save()
+                # 更新通知
+                action = ACTION["update"]
+                add_notice = Notice(user_id, service_name, action)
+                add_notice.save()
                 result["msg"] = "success"
             except:
                 result["msg"] = "update service data failed"

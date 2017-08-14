@@ -68,3 +68,5 @@ from .User import *
 from .Message import Message
 from .Setting import Setting
 from .Configuration import Configuration
+from .Notice import Notice
+from .CheckNotice import CheckNotice

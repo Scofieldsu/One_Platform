@@ -15,6 +15,11 @@ from models.User import User
 class NoticeApi(object):
 
     def get_notice_list(self,user_id):
+        """
+        :description 获取通知信息列表
+        :param user_id: int:用户ID
+        :return: list
+        """
         result = list()
         notices = Notice.query.all()
         notices_copy = copy.deepcopy(notices)
@@ -44,6 +49,12 @@ class NoticeApi(object):
         return result
 
     def check_notice(self,user_id,notice_id):
+        """
+        :description  关闭某个通知消息
+        :param user_id: int:用户ID
+        :param notice_id: int:通知ID
+        :return: msg
+        """
         notice = CheckNotice(user_id,notice_id)
         notice.save()
         result = dict()

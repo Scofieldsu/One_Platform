@@ -15,13 +15,15 @@ class Notice(db.Model):
     service_name = db.Column(db.String(50))
     action = db.Column(db.String(50))
     time = db.Column(db.DateTime,default=datetime.now)
+    link = db.Column(db.String(100))
     checkflag = db.relationship('CheckNotice', backref='notice')
 
 
-    def __init__(self,user_id,service_name,action):
+    def __init__(self,user_id,service_name,action,link):
         self.user_id = user_id
         self.service_name = service_name
         self.action = action
+        self.link = link
 
     def save(self):
         db.session.add(self)

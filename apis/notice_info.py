@@ -37,6 +37,7 @@ class NoticeApi(object):
                             result_item["action"] = notices_copy[x].action
                             result_item["service_name"] = notices_copy[x].service_name
                             result_item["time"] = notices_copy[x].time
+                            result_item["link"] = notices_copy[x].link
                             result.append(result_item)
                 else:
                     result_item = dict()
@@ -45,6 +46,7 @@ class NoticeApi(object):
                     result_item["action"] = notices_copy[x].action
                     result_item["service_name"] = notices_copy[x].service_name
                     result_item["time"] = notices_copy[x].time
+                    result_item["link"] = notices_copy[x].link
                     result.append(result_item)
         return result
 

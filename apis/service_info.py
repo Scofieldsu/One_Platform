@@ -159,7 +159,7 @@ class ServiceApi(object):
                 service.save()
                 # 更新通知
                 action = ACTION["update"]
-                add_notice = Notice(user_id, service_name, action)
+                add_notice = Notice(user_id, service_name, action,link)
                 add_notice.save()
                 result["msg"] = "success"
             except:

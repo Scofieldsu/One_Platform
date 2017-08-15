@@ -12,7 +12,7 @@
 
 - 本机调试运行：python run.py
 
-- 运行后，localhost  为登录页面
+- 运行后，localhost:5050  为登录页面
 
 - linux上部署：
 
@@ -20,9 +20,9 @@
 
 - 打包docker镜像(在Dockfile文件路径下)：
 
- > docker build -t smart_tools .
+ > docker build -t oneplatform .
 
- > docker run -d -p 8000:80 smart_tools
+ > docker run -d -p 80:5050 oneplatform
 
 - 在根目录下有docker-compose配置文件，可以根据命令启动或者停止容器运行：
 

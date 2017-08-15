@@ -9,10 +9,10 @@ services:
       ports:
         - "80:5050"
       environment:
-        - MYSQL_HOST=192.168.5.91
-        - MYSQL_PASSWORD=yuyuan
-        - MYSQL_DATABASE=tools
-        - MYSQL_USERNAME=root
+        - MYSQL_HOST=10.46.97.105
+        - MYSQL_PASSWORD=yuy123456
+        - MYSQL_DATABASE=oneplatform
+        - MYSQL_USERNAME=yuy
 
 
 

@@ -7,7 +7,7 @@ services:
         context: .
         dockerfile: Dockerfile
       ports:
-        - "80:5050"
+        - "80:80"
       environment:
         - MYSQL_HOST=10.46.97.105
         - MYSQL_PASSWORD=yuy123456

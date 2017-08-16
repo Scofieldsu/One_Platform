@@ -2,7 +2,7 @@ image: docker:latest
 
 variables:
   DOCKER_DRIVER: overlay
-  DC_REGISTRY: 192.168.5.41
+  DC_REGISTRY: hub.dianchu.cc
   DC_REGISTRY_USER: gitlab_ci
   DC_REGISTRY_PASS: Gitlab_c1
   PROJECT_NAME: oneplatform

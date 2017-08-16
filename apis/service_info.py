@@ -40,7 +40,7 @@ class ServiceApi(object):
             # 更新通知
             if notice:
                 action = ACTION["add"]
-                add_notice = Notice(user_id,service_name,action)
+                add_notice = Notice(user_id,service_name,action,link)
                 add_notice.save()
             result["msg"] = "success"
         return result
@@ -108,7 +108,7 @@ class ServiceApi(object):
             service.delete()
             # 更新通知
             action = ACTION["delete"]
-            add_notice = Notice(user_id, service.service_name, action)
+            add_notice = Notice(user_id, service.service_name, action, '')
             add_notice.save()
             result["msg"] = "success"
         else:

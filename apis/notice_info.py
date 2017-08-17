@@ -4,7 +4,6 @@
 @Author : Yu Yuan
 
 """
-import copy
 from flaskapi.api import api_class
 from models.Notice import Notice
 from models.CheckNotice import CheckNotice
@@ -22,31 +21,31 @@ class NoticeApi(object):
         """
         result = list()
         notices = Notice.query.all()
-        notices_copy = copy.deepcopy(notices)
         check_notices = CheckNotice.query.filter_by(user_id=user_id).all()
         if notices:
-            for x in range(len(notices_copy)):
-                if check_notices:
-                    for check_notice in check_notices:
-                        if check_notice.notice_id == notices_copy[x].id:
-                            notices.remove(notices[x])
-                        else:
-                            result_item = dict()
-                            result_item["id"] = notices_copy[x].id
-                            result_item["user_name"] = User.query.filter_by(id=notices_copy[x].user_id).first().username
-                            result_item["action"] = notices_copy[x].action
-                            result_item["service_name"] = notices_copy[x].service_name
-                            result_item["time"] = notices_copy[x].time
-                            result_item["link"] = notices_copy[x].link
-                            result.append(result_item)
-                else:
+            if check_notices:
+                for check_notice in check_notices:
+                    for x in notices:
+                        if check_notice.notice_id == x.id:
+                            notices.remove(x)
+                for x in range(len(notices)):
                     result_item = dict()
-                    result_item["id"] = notices_copy[x].id
-                    result_item["user_name"] = User.query.filter_by(id=notices_copy[x].user_id).first().username
-                    result_item["action"] = notices_copy[x].action
-                    result_item["service_name"] = notices_copy[x].service_name
-                    result_item["time"] = notices_copy[x].time
-                    result_item["link"] = notices_copy[x].link
+                    result_item["id"] = notices[x].id
+                    result_item["user_name"] = User.query.filter_by(id=notices[x].user_id).first().username
+                    result_item["action"] = notices[x].action
+                    result_item["service_name"] = notices[x].service_name
+                    result_item["time"] = notices[x].time
+                    result_item["link"] = notices[x].link
+                    result.append(result_item)
+            else:
+                for notice_item in notices:
+                    result_item = dict()
+                    result_item["id"] = notice_item.id
+                    result_item["user_name"] = User.query.filter_by(id=notice_item.user_id).first().username
+                    result_item["action"] = notice_item.action
+                    result_item["service_name"] = notice_item.service_name
+                    result_item["time"] = notice_item.time
+                    result_item["link"] = notice_item.link
                     result.append(result_item)
         return result
 

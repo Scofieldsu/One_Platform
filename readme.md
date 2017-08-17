@@ -55,20 +55,18 @@
 
 - 如下图可以增加一个应用，包括gitlab地址，应用ID和密钥，回调链接和回调服务。（应用名称应唯一，如果系统中存在，则更新该应用信息。）
 
-![新增gitlab应用](snips/gitlab_add_app.png)
+  ![新增gitlab应用](snips/gitlab_add_app.png)
 
 - 配置正确的gitlab应用，保证你可以正常通过gitlab验证登录。
 
   - 点击查询，可以显示系统当前使用的gitlab应用，下拉显示所有gitlab应用列表。
 
-![选择gitlab应用](snips/gitlab_select_app.png)
+  ![选择gitlab应用](snips/gitlab_select_app.png)
 
 
  ---
 
  ## 系统效果图
 
- ![部分功能展示](snips/test.gif)
+ ![部分功能展示](snips/show.gif)
 
- ## 使用gitlab登录
- ![gitlab验证登录](snips/gitlab.gif)

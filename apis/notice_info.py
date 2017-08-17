@@ -4,6 +4,7 @@
 @Author : Yu Yuan
 
 """
+import datetime
 from flaskapi.api import api_class
 from models.Notice import Notice
 from models.CheckNotice import CheckNotice
@@ -20,7 +21,11 @@ class NoticeApi(object):
         :return: list
         """
         result = list()
-        notices = Notice.query.all()
+        # 只获取7天内的通知
+        filters = {
+            Notice.time >  (datetime.datetime.now()-datetime.timedelta(days=7))
+        }
+        notices = Notice.query.filter(*filters).all()
         check_notices = CheckNotice.query.filter_by(user_id=user_id).all()
         if notices:
             if check_notices:
@@ -31,7 +36,11 @@ class NoticeApi(object):
                 for x in range(len(notices)):
                     result_item = dict()
                     result_item["id"] = notices[x].id
-                    result_item["user_name"] = User.query.filter_by(id=notices[x].user_id).first().username
+                    u = User.query.filter_by(id=notices[x].user_id).first()
+                    if u:
+                        result_item["user_name"] = u.username
+                    else:
+                        result_item["user_name"] = ""
                     result_item["action"] = notices[x].action
                     result_item["service_name"] = notices[x].service_name
                     result_item["time"] = notices[x].time
@@ -41,7 +50,11 @@ class NoticeApi(object):
                 for notice_item in notices:
                     result_item = dict()
                     result_item["id"] = notice_item.id
-                    result_item["user_name"] = User.query.filter_by(id=notice_item.user_id).first().username
+                    u = User.query.filter_by(id=notice_item.user_id).first()
+                    if u:
+                        result_item["user_name"] = u.username
+                    else:
+                        result_item["user_name"] = ""
                     result_item["action"] = notice_item.action
                     result_item["service_name"] = notice_item.service_name
                     result_item["time"] = notice_item.time

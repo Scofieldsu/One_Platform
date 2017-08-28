@@ -7,8 +7,6 @@ variables:
   DC_REGISTRY_PASS: Gitlab_c1
   PROJECT_NAME: oneplatform
 
-services:
-- docker:dind
 
 before_script:
 - export BUILD_TAG=$(cat version)

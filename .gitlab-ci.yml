@@ -23,7 +23,7 @@ build:
     - docker build -t $DC_REGISTRY/library/$PROJECT_NAME:$BUILD_TAG .
     - docker push $DC_REGISTRY/library/$PROJECT_NAME:$BUILD_TAG
   tags:
-    - docker
+    - rancher_docker
 
 
 deploy:
@@ -32,4 +32,4 @@ deploy:
     - docker tag $DC_REGISTRY/library/$PROJECT_NAME:$BUILD_TAG $DC_REGISTRY/library/$PROJECT_NAME:latest
     - docker push $DC_REGISTRY/library/$PROJECT_NAME:latest
   tags:
-    - docker
+    - rancher_docker

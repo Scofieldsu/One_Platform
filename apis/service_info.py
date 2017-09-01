@@ -10,6 +10,7 @@ from models.User import User
 from datetime import datetime
 from models.Notice import Notice
 from config import ACTION
+from models import db
 
 
 @api_class
@@ -166,5 +167,22 @@ class ServiceApi(object):
                 result["msg"] = "update service data failed"
         else:
             result["msg"] = "service id error"
+        return result
+
+    def get_service_visit_count(self,user_id):
+        """
+        :description 获取服务访问量
+        :param user_id:int: 用户ID
+        :return:dict
+        """
+        services = Service.query.order_by(db.desc(Service.visit_count)).all()
+        result = dict()
+        name = list()
+        count = list()
+        for service in services:
+            name.append(service.service_name)
+            count.append(service.visit_count)
+        result['name'] = name
+        result['count'] = count
         return result
 

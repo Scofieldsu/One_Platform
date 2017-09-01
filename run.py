@@ -42,7 +42,7 @@ def login_gitlab():
         'client_secret': setting.client_secret,
         'code': code,
         'grant_type': config.GRANT_TYPE,
-        'redirect_uri': setting.redirect_uri
+        'redirect_uri': setting.redirect_uri,
     }
     r = requests.post(setting.gitlab_url+config.POST_TOKEN_URL,playload)
     x = json.loads(r.content)

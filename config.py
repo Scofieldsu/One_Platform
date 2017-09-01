@@ -45,7 +45,7 @@ POST_TOKEN_URL =  '/oauth/token'
 ## 请求gitlab api
 GITLAB_API_URL =  '/api/v4/'
 ## 登录后路径
-LOGIN_URL = '/#/yours/notices'
+LOGIN_URL = '/#/yours/all_tools'
 ## 默认注册密码
 PWD = 'e10adc3949ba59abbe56e057f20f883e'
 

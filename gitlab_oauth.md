@@ -9,7 +9,7 @@ GitLab as an OAuth2 provider
 
 ## 授权码模式获取access_token
 
-- **GET请求: gitlab地址/oauth/authorize ,参数如下图：**
+- **GET请求: gitlab地址/oauth/authorize ,参数如下图(可再加上scope参数,例如只需要获取用户信息，但没有api权限，则scope=read_user)：**
 
 ![get请求参数](snips/gitlab_oauth/1.png)
 

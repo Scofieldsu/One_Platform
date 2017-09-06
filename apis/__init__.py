@@ -11,3 +11,4 @@ from . import collections
 from . import setting_info
 from . import configurations
 from . import notice_info
+from . import public_info

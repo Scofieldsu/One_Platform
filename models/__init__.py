@@ -70,3 +70,4 @@ from .Setting import Setting
 from .Configuration import Configuration
 from .Notice import Notice
 from .CheckNotice import CheckNotice
+from .Publlicinfo import Publicinfo

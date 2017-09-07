@@ -46,14 +46,19 @@ class ServiceApi(object):
             result["msg"] = "success"
         return result
 
-    def get_service_list(self,user_id):
+    def get_service_list(self,user_id,current_page,size):
         """
         :description 获取所有服务
         :param user_id: int:用户ID
+        :param current_page: int:当前页数
+        :param size: int:每页显示条数
         :return: list
         """
         result = list()
-        service_list = Service.query.all()
+        if current_page == 0 :
+            service_list = Service.query.all()
+        else:
+            service_list = Service.query.order_by(Service.id).offset((current_page-1)*size).limit(size).all()
         if service_list:
             for service in service_list:
                 result_item = dict()
@@ -72,6 +77,21 @@ class ServiceApi(object):
                 result_item["change_time"] = service.change_time or ""
                 result.append(result_item)
         return result
+
+    def get_service_count(self,user_id):
+        """
+        :description 获取服务总数量
+        :param user_id:int:用户ID
+        :return:int
+        """
+        result = dict()
+        service_count = Service.query.count()
+        if service_count:
+            result['count'] = service_count
+            result['msg'] = 'success'
+        else:
+            result['msg'] = 'query error'
+        return  result
 
     def get_service(self,user_id, service_id):
         """
